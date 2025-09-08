@@ -1,0 +1,77 @@
+@startuml
+
+class Veicolo {
+    - String targa
+    - String marca
+    - final String modello
+    - int numero_posti
+    - Motore motore
+
+    + Veicolo(String targa, String marca, String modello, int numero_posti)
+    + void faiRumore()
+    + String getTarga()
+    + void setTarga(String targa)
+    + String getMarca()
+    + void setMarca(String marca)
+    + String getModello()
+    + int getNumero_posti()
+    + void setNumero_posti(int numero_posti)
+    + Motore getMotore()
+    + void setMotore(Motore motore)
+    + String toString()
+    + boolean equals(Object o)
+    + int hashCode()
+}
+
+class Motore {
+    - String numeroSerie
+    - String modello
+
+    + Motore(String numeroSerie, String modello)
+    + String getNumeroSerie()
+    + void setNumeroSerie(String numeroSerie)
+    + String getModello()
+    + void setModello(String modello)
+    + String toString()
+    + boolean equals(Object o)
+    + int hashCode()
+}
+
+class Camion extends Veicolo {
+    - int carico
+
+    + Camion(String targa, String marca, String modello, int numero_posti, int carico)
+    + int getCarico()
+    + void setCarico(int carico)
+    + String toString()
+    + boolean equals(Object o)
+    + int hashCode()
+}
+
+class Auto extends Veicolo {
+    - int numero_di_porte
+
+    + Auto(String targa, String marca, String modello, int numero_posti, int numero_di_porte)
+    + int getNumero_di_porte()
+    + void setNumero_di_porte(int numero_di_porte)
+    + String toString()
+    + boolean equals(Object o)
+    + int hashCode()
+}
+
+class Moto <<final>> extends Veicolo {
+    - String tipo
+
+    + Moto(String targa, String marca, String modello, int numero_posti, String tipo)
+    + String getTipo()
+    + void setTipo(String tipo)
+    + void faiRumore()
+    + String toString()
+    + boolean equals(Object o)
+    + int hashCode()
+}
+
+Veicolo --> Motore
+
+
+@enduml
