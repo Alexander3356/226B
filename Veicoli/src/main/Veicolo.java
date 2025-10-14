@@ -43,7 +43,6 @@ public class Veicolo {
         return modello;
     }
 
-
     public int getNumero_posti() {
         return numero_posti;
     }

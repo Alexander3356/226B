@@ -1,16 +1,22 @@
 package main.fourwheels;
 
 import main.Veicolo;
+import main.interfaces.Riparabile;
 
 import java.util.Objects;
 
-public class Auto extends Veicolo {
+public class Auto extends Veicolo implements Riparabile {
 
     private int numero_di_porte;
 
     public Auto(String targa, String marca, String modello, int numero_posti, int numero_di_porte) {
         super(targa, marca, modello, numero_posti);
         this.numero_di_porte = numero_di_porte;
+    }
+
+    @Override
+    public double calcolaCostoRiparazione(int oreLavoro) {
+        return oreLavoro * 45.0 + 100;
     }
 
     public int getNumero_di_porte() {

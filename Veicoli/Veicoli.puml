@@ -1,77 +1,132 @@
 @startuml
-
-class Veicolo {
-    - String targa
-    - String marca
-    - final String modello
-    - int numero_posti
-    - Motore motore
-
-    + Veicolo(String targa, String marca, String modello, int numero_posti)
-    + void faiRumore()
-    + String getTarga()
-    + void setTarga(String targa)
-    + String getMarca()
-    + void setMarca(String marca)
-    + String getModello()
-    + int getNumero_posti()
-    + void setNumero_posti(int numero_posti)
-    + Motore getMotore()
-    + void setMotore(Motore motore)
-    + String toString()
-    + boolean equals(Object o)
-    + int hashCode()
+interface main.interfaces.VeicoloElettrico {
+~ double getAutonomiaBatteria()
+~ void ricarica()
 }
 
-class Motore {
-    - String numeroSerie
-    - String modello
-
-    + Motore(String numeroSerie, String modello)
-    + String getNumeroSerie()
-    + void setNumeroSerie(String numeroSerie)
-    + String getModello()
-    + void setModello(String modello)
-    + String toString()
-    + boolean equals(Object o)
-    + int hashCode()
+class main.service.AgenziaAssicurativa {
+~ Set<Assicurabile> veicoliAssicurati
++ void aggiungiVeicolo(Assicurabile)
++ double calcolaIncassoTotale()
++ Set<Assicurabile> getVeicoliAssicurati()
++ void setVeicoliAssicurati(Set<Assicurabile>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
 }
 
-class Camion extends Veicolo {
-    - int carico
 
-    + Camion(String targa, String marca, String modello, int numero_posti, int carico)
-    + int getCarico()
-    + void setCarico(int carico)
-    + String toString()
-    + boolean equals(Object o)
-    + int hashCode()
+class main.fourwheels.Camion {
+- int carico
++ int getCarico()
++ void setCarico(int)
++ String toString()
++ boolean equals(Object)
++ int hashCode()
 }
 
-class Auto extends Veicolo {
-    - int numero_di_porte
 
-    + Auto(String targa, String marca, String modello, int numero_posti, int numero_di_porte)
-    + int getNumero_di_porte()
-    + void setNumero_di_porte(int numero_di_porte)
-    + String toString()
-    + boolean equals(Object o)
-    + int hashCode()
+class main.Main {
++ {static} void main(String[])
 }
 
-class Moto <<final>> extends Veicolo {
-    - String tipo
-
-    + Moto(String targa, String marca, String modello, int numero_posti, String tipo)
-    + String getTipo()
-    + void setTipo(String tipo)
-    + void faiRumore()
-    + String toString()
-    + boolean equals(Object o)
-    + int hashCode()
+interface main.interfaces.Assicurabile {
+~ double getCostoAssicurazione()
 }
 
-Veicolo --> Motore
+class main.service.Officina {
+- List<Riparabile> veicoliInRiparazione
++ void accettaVeicolo(Riparabile)
++ void stampaSchedarioRiparazioni()
++ List<Riparabile> getVeicoliInRiparazione()
++ void setVeicoliInRiparazione(List<Riparabile>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
 
 
+class main.fourwheels.AutoElettrica {
+- double autonomiaBatteria
++ void ricarica()
++ double getAutonomiaBatteria()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class main.fourwheels.Auto {
+- int numero_di_porte
++ double calcolaCostoRiparazione(int)
++ int getNumero_di_porte()
++ void setNumero_di_porte(int)
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class main.twowheels.Moto {
+- String tipo
++ double getCostoAssicurazione()
++ double calcolaCostoRiparazione(int)
++ String getTipo()
++ void setTipo(String)
++ void faiRumore()
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class main.Veicolo {
+- String targa
+- String marca
+- String modello
+- int numero_posti
+- Motore motore
++ void faiRumore()
++ String getTarga()
++ void setTarga(String)
++ String getMarca()
++ void setMarca(String)
++ String getModello()
++ int getNumero_posti()
++ void setNumero_posti(int)
++ Motore getMotore()
++ void setMotore(Motore)
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+interface main.interfaces.Riparabile {
+~ double calcolaCostoRiparazione(int)
+}
+
+class main.mechanics.Motore {
+- String numeroSerie
+- String modello
++ String getNumeroSerie()
++ void setNumeroSerie(String)
++ String getModello()
++ void setModello(String)
++ String toString()
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+
+
+main.Veicolo <|-- main.fourwheels.Camion
+main.interfaces.VeicoloElettrico <|.. main.fourwheels.AutoElettrica
+main.fourwheels.Auto <|-- main.fourwheels.AutoElettrica
+main.interfaces.Riparabile <|.. main.fourwheels.Auto
+main.Veicolo <|-- main.fourwheels.Auto
+main.interfaces.Assicurabile <|.. main.twowheels.Moto
+main.interfaces.Riparabile <|.. main.twowheels.Moto
+main.Veicolo <|-- main.twowheels.Moto
 @enduml

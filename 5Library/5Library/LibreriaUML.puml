@@ -1,0 +1,86 @@
+@startuml
+class com.digitallibrary.model.content.EBook {
+- Genre genre
+- int pageCount
+
++ boolean isIllustrated()
+}
+
+
+enum com.digitallibrary.enums.Difficulty {
++  BEGINNER
++  INTERMEDIATE
++  ADVANCED
+- String displayName
+- int level
+
+}
+
+
+class com.digitallibrary.model.content.DigitalMagazine {
+- int issueNumber
+- LocalDate publicationDate
+- String category
++ BigDecimal calculatePrice()
+
+}
+
+
+interface com.digitallibrary.interfaces.Purchasable {
+~ BigDecimal calculatePrice()
+~ void applyDiscount(double)
+~ {static} BigDecimal getDefaultTaxRate()
+~ BigDecimal getPriceWithTax()
+}
+
+abstract class com.digitallibrary.model.base.DigitalContent {
+# String id
+# String title
+# String author
+# BigDecimal basePrice
+- double currentDiscount
++ {abstract}String getContentType()
++ {abstract}String getDescription()
++ BigDecimal calculatePrice()
++ void applyDiscount(double)
+}
+
+
+class com.digitallibrary.model.content.AudioBook {
+- String narrator
+- int duration
+- String language
++ String getFormattedDuration()
++ BigDecimal calculatePrice()
+}
+
+
+enum com.digitallibrary.enums.Genre {
++  FICTION
++  NON_FICTION
++  BIOGRAPHY
++  SCIENCE
++  TECHNOLOGY
+- String displayName
+}
+
+
+class com.digitallibrary.main.Main {
++ {static} void main(String[])
+}
+
+class com.digitallibrary.model.content.OnlineCourse {
+- String instructor
+- Difficulty difficulty
+- int estimatedHours
+}
+
+
+
+
+com.digitallibrary.model.base.DigitalContent <|-- com.digitallibrary.model.content.EBook
+com.digitallibrary.model.base.DigitalContent <|-- com.digitallibrary.model.content.DigitalMagazine
+com.digitallibrary.interfaces.Purchasable <|.. com.digitallibrary.model.base.DigitalContent
+com.digitallibrary.model.base.DigitalContent <|-- com.digitallibrary.model.content.AudioBook
+com.digitallibrary.model.base.DigitalContent <|-- com.digitallibrary.model.content.OnlineCourse
+@enduml

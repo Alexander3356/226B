@@ -1,0 +1,58 @@
+@startuml
+class ch.samt.talentshow.model.Dancer {
++ void Esecuzione()
++ void Valutazione()
+}
+
+abstract class ch.samt.talentshow.model.Partecipante {
+# String nome
+# int eta
+# Categoria categoria
+# Livello livello
++ double valore
++ void Presentazione()
++ void Valutazione()
++ Livello getLivello()
++ void setLivello(Livello)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class ch.samt.talentshow.model.Singer {
++ void Esecuzione()
++ void Valutazione()
+}
+
+enum ch.samt.talentshow.enumerator.Categoria {
++  SINGER
++  DANCER
++  MAGICIAN
+}
+
+class ch.samt.talentshow.model.Magician {
++ void Esecuzione()
++ void Valutazione()
+}
+
+class ch.samt.talentshow.Main {
++ {static} void main(String[])
+}
+
+enum ch.samt.talentshow.enumerator.Livello {
++  BEGINNER
++  INTERMEDIATE
++  PROFESSIONAL
+}
+
+
+
+ch.samt.talentshow.model.Partecipante <|-- ch.samt.talentshow.model.Dancer
+ch.samt.talentshow.model.Partecipante <|-- ch.samt.talentshow.model.Singer
+ch.samt.talentshow.model.Partecipante <|-- ch.samt.talentshow.model.Magician
+
+ch.samt.talentshow.Main --|> ch.samt.talentshow.model.Dancer
+ch.samt.talentshow.Main --|> ch.samt.talentshow.model.Singer
+ch.samt.talentshow.Main --|> ch.samt.talentshow.model.Magician
+@enduml
