@@ -7,6 +7,12 @@ public abstract class AquaticCreature implements Creature {
     private int eta;
     private String name;
 
+    public AquaticCreature(int energy, int speed, int eta, String name) {
+        this.energy = energy;
+        this.speed = speed;
+        this.eta = eta;
+        this.name = name;
+    }
 
     @Override
     public void makeSound() {
@@ -18,12 +24,15 @@ public abstract class AquaticCreature implements Creature {
         energy -= 2;
         if (energy <= 0) {
             System.out.println( name + " è morto");
+        } else {
+            System.out.println( name + " si muove nell'acqua");
         }
     }
 
     @Override
     public void eat() {
         energy += 5;
+        System.out.println( name + " si è appena nutrito, nuovo livello di energia: " + energy);
     }
 
     public int getEnergy() {
