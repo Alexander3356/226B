@@ -1,0 +1,93 @@
+@startuml
+class ch.samt.models.ConcertTicket {
+- Sector sector
+- String mainArtist
++ double calculateTicketPrice()
++ String getEventType()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class ch.samt.models.SportTicket {
+- Sector sector
++ double calculateTicketPrice()
++ String getEventType()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class ch.samt.models.TicketManager {
+- ArrayList<EventTicket> tickets
++ void addTicket(EventTicket)
++ void printTickets()
++ void sellEventTicket(String)
++ void availableTickets()
++ void calculateTotalMoney()
++ void ticketPerEventName(String)
++ void ticketPerPrice()
++ void ticketPerEvent(String)
++ void averagePrice()
+}
+
+
+abstract class ch.samt.models.EventTicket {
+- String ticketCode
+- String eventName
+- String date
+- String place
+- int seatNumber
+- State state
++ double calculateTicketPrice()
++ void sellTicket()
++ String getEventType()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+class ch.samt.main {
++ {static} void main(String[])
+}
+
+interface ch.samt.models.Ticket {
+~ double calculateTicketPrice()
+~ void sellTicket()
+~ String getEventType()
+~ State isSold()
+}
+
+class ch.samt.models.TheaterTicket {
+- String showTitle
+- int row
+- boolean studentDiscount
++ double calculateTicketPrice()
++ boolean isStudentDiscount()
++ void setStudentDiscount(boolean)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+
+
+enum ch.samt.enumerators.Sector {
++  CURVA
++  TRIBUNA
+}
+
+enum ch.samt.enumerators.State {
++  DISPONIBILE
++  VENDUTO
+}
+
+
+
+ch.samt.models.EventTicket <|-- ch.samt.models.ConcertTicket
+ch.samt.models.EventTicket <|-- ch.samt.models.SportTicket
+ch.samt.models.Ticket <|.. ch.samt.models.EventTicket
+ch.samt.models.EventTicket <|-- ch.samt.models.TheaterTicket
+@enduml
