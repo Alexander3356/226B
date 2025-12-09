@@ -4,7 +4,7 @@ import ch.samt.Calculator;
 
 public class CalculatorService {
 
-    private Calculator calculator = new Calculator();
+    private Calculator calculator;
 
     public CalculatorService(Calculator calculator) {
         this.calculator = calculator;
